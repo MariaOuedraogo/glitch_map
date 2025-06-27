@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUG - Le Feed complet</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f0f0f0;
+      font-family: 'Space Mono', monospace;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background: #000;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo .star {
+      width: 30px;
+      height: 30px;
+      background: #fff;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid transparent;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      border-color: #fff;
+      background: #fff;
+      color: #000;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 300px 1fr 300px;
+      gap: 2rem;
+    }
+
+    .sidebar, .rightbar {
+      background: #fff;
+      border: 4px solid #000;
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+
+    .sidebar h3, .rightbar h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      background: #000;
+      color: #fff;
+      padding: 0.5rem;
+      margin: -1.5rem -1.5rem 1rem -1.5rem;
+    }
+
+    .sidebar p, .rightbar p {
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .team-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .team-member {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: #000;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .team-member:hover {
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 0;
+      border: 2px solid #fff;
+      object-fit: cover;
+    }
+
+    .team-member:hover .avatar {
+      border-color: #000;
+    }
+
+    .feed {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .post {
+      background: #fff;
+      border: 4px solid #000;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .post:hover {
+      transform: translate(-5px, -5px);
+      box-shadow: 5px 5px 0 #000;
+    }
+
+    .post-header {
+      background: #000;
+      color: #fff;
+      padding: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .post-content {
+      padding: 1.5rem;
+    }
+
+    .post h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .post-description {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .post-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border: 2px solid #000;
+      margin-top: 1rem;
+    }
+
+    .decorative-element {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 20px;
+      height: 20px;
+      background: #000;
+      clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    }
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stat-item {
+      background: #000;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      display: block;
+    }
+
+    .modal, .profile-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content, .profile-content {
+      background: #fff;
+      border: 6px solid #000;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-header, .profile-header {
+      background: #000;
+      color: #fff;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body, .profile-body {
+      padding: 2rem;
+    }
+
+    .close-btn {
+      background: #fff;
+      color: #000;
+      border: 2px solid #fff;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .close-btn:hover {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .modal-meta {
+      font-size: 0.9rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .modal-image {
+      width: 100%;
+      border: 2px solid #000;
+      margin-top: 1rem;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border: 4px solid #000;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .profile-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-role {
+      font-size: 1rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .profile-info {
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-info p {
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .experience h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      background: #000;
+      color: #fff;
+      padding: 0.5rem;
+    }
+
+    .experience p {
+      margin-bottom: 0.5rem;
+      padding-left: 1rem;
+      border-left: 3px solid #000;
+    }
+
+    .testimonial {
+      font-style: italic;
+      color: #555;
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid #000;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <div class="star"></div>
+      <h1>BUGLEJOURNAL</h1>
+    </div>
+    <div class="nav-links">
+      <a href="#">Accueil</a>
+      <a href="#">Notifications</a>
+      <a href="#">Profil</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h3>Profil Projet</h3>
+      <p><strong>NOM :</strong> BUG</p>
+      <p><strong>RÔLE :</strong> Média critique du numérique</p>
+      <p><strong>TECHNOS :</strong> Next.js, Prismic, Docker</p>
+
+      <h3 style="margin-top: 2rem;">Équipe Projet</h3>
+      <ul class="team-list">
+        <li class="team-member" onclick="openProfile('Maria')">
+          <img src="https://media.licdn.com/dms/image/v2/D4E35AQGioOatRj--ug/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1710236462031?e=1751637600&v=beta&t=sh4K1pg-rLRAKZO5Gm_wWDvx6fmGj1zl71hHLc9-eXA" alt="Maria" class="avatar">
+          <span>MARIA</span>
+        </li>
+        <li class="team-member" onclick="openProfile('Ilès')">
+          <img src="https://media.licdn.com/dms/image/v2/D4E03AQF-cwd-uTogsQ/profile-displayphoto-shrink_400_400/B4EZcOPCDZHAAk-/0/1748290513584?e=1756339200&v=beta&t=D8B_SNcpNFKgBFzN_6Pz35Db2aynJ53Fj9LmuFGPpwI" alt="Ilès" class="avatar">
+          <span>ILÈS</span>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="feed">
+      <!-- Les posts restent inchangés -->
+      <div class="post" onclick="openModal('📌 Septembre – Le déclic', 'Naissance du projet', 'Une faille. Une IA piégée. 42 000 dollars évaporés dans les limbes du numérique. C’est à ce moment précis que l’idée a germé. Et si on reprenait le pouvoir sur nos identités numériques ? Et si on arrêtait de subir le web pour commencer à l’expliquer ? BUG n’est pas né d’un brief, mais d’un bug. Le vrai.', 'https://source.unsplash.com/600x300/?technology')">
+        <div class="decorative-element"></div>
+        <div class="post-header">📌 Septembre – Le déclic</div>
+        <div class="post-content">
+          <h2>Naissance du projet</h2>
+          <div class="post-description">Une faille. Une IA piégée. 42 000 dollars évaporés dans les limbes du numérique...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?technology" alt="Naissance du projet" />
+        </div>
+      </div>
+      <!-- Ajoutez les autres posts ici -->
+      <div class="post" onclick="openModal('🔍 Octobre – Les Fondations', 'Exploration & structure', 'Recherche intense. Analyse de The Verge, Wired, et autres OVNIs éditoriaux. Petit à petit, BUG se dessine : un média pédagogique, mais aussi critique. On crée les rubriques : Identité, Droit, Engagement, Culture. Un pont entre ceux qui savent et ceux qui veulent comprendre.', 'https://source.unsplash.com/600x300/?research')">
+        <div class="decorative-element"></div>
+        <div class="post-header">🔍 Octobre – Les Fondations</div>
+        <div class="post-content">
+          <h2>Exploration & structure</h2>
+          <div class="post-description">Recherche intense. Analyse de The Verge, Wired, et autres OVNIs éditoriaux...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?research" alt="Exploration & structure" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('📝 Novembre – Mettre en ordre le chaos', 'Organisation & Validation', 'Cahier des charges, calendrier, rôles. La rigueur s’invite dans le projet. On apprend à penser collectivement, à anticiper, à se structurer.', 'https://source.unsplash.com/600x300/?planning')">
+        <div class="decorative-element"></div>
+        <div class="post-header">📝 Novembre – Mettre en ordre le chaos</div>
+        <div class="post-content">
+          <h2>Organisation & Validation</h2>
+          <div class="post-description">Cahier des charges, calendrier, rôles. La rigueur s’invite dans le projet...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?planning" alt="Organisation & Validation" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('🎨 Décembre - Janvier – Le langage visuel', 'Design du site', 'Avec notre binôme graphiste, on imagine un univers brutaliste et contrasté, presque militant. Des maquettes Figma naissent. Le magazine prend une forme visuelle forte, presque vivante. On n’est plus spectateurs du numérique : on le construit.', 'https://source.unsplash.com/600x300/?figma')">
+        <div class="decorative-element"></div>
+        <div class="post-header">🎨 Décembre - Janvier – Le langage visuel</div>
+        <div class="post-content">
+          <h2>Design du site</h2>
+          <div class="post-description">Avec notre binôme graphiste, on imagine un univers brutaliste et contrasté...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?figma" alt="Design du site" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('🧠 Février – Prismic et l’architecture du contenu', 'Architecture du contenu', 'Découverte du headless CMS Prismic. On pense le contenu comme un flux : structuré, dynamique, éditable. On commence à construire un système, pas juste un site.', 'https://source.unsplash.com/600x300/?cms')">
+        <div class="decorative-element"></div>
+        <div class="post-header">🧠 Février – Prismic et l’architecture du contenu</div>
+        <div class="post-content">
+          <h2>Architecture du contenu</h2>
+          <div class="post-description">Découverte du headless CMS Prismic. On pense le contenu comme un flux...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?cms" alt="Architecture du contenu" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('💻 Mars – Next.js & Intégration', 'Développement du site', 'Le cœur du front. Routage dynamique, composants réactifs. Le site prend vie. Et il est beau. Fonctionnel. Dense.', 'https://source.unsplash.com/600x300/?development')">
+        <div class="decorative-element"></div>
+        <div class="post-header">💻 Mars – Next.js & Intégration</div>
+        <div class="post-content">
+          <h2>Développement du site</h2>
+          <div class="post-description">Le cœur du front. Routage dynamique, composants réactifs...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?development" alt="Développement du site" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('♿ Avril – Accessibilité & Exigences', 'Accessibilité', 'On s’impose Lighthouse, Opquast, navigation clavier, contraste, images alternatives. On apprend que coder, c’est inclure. Même si ça signifie sacrifier des animations. Pas grave. L’éthique avant l’esthétique.', 'https://source.unsplash.com/600x300/?accessibility')">
+        <div class="decorative-element"></div>
+        <div class="post-header">♿ Avril – Accessibilité & Exigences</div>
+        <div class="post-content">
+          <h2>Accessibilité</h2>
+          <div class="post-description">On s’impose Lighthouse, Opquast, navigation clavier, contraste...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?accessibility" alt="Accessibilité" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('🚢 Mai – Déploiement', 'Déploiement', 'Dockerisation, Vercel, DNS, SSL. BUG devient réel. Le web n’est plus un terrain d’étude. C’est notre terrain d’action.', 'https://source.unsplash.com/600x300/?deployment')">
+        <div class="decorative-element"></div>
+        <div class="post-header">🚢 Mai – Déploiement</div>
+        <div class="post-content">
+          <h2>Déploiement</h2>
+          <div class="post-description">Dockerisation, Vercel, DNS, SSL. BUG devient réel...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?deployment" alt="Déploiement" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('🎤 Juin – Livraison et fierté', 'Livraison', 'On présente. On documente. On publie le code. Notre travail est en ligne, lisible, utilisable. BUG est un outil. Un manifeste.', 'https://source.unsplash.com/600x300/?launch')">
+        <div class="decorative-element"></div>
+        <div class="post-header">🎤 Juin – Livraison et fierté</div>
+        <div class="post-content">
+          <h2>Livraison</h2>
+          <div class="post-description">On présente. On documente. On publie le code...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?launch" alt="Livraison" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('👤 Regards croisés', 'Témoignages', '🎙️ MARIA : Ce projet m’a permis de devenir développeuse. Pas juste de coder, mais de penser le code comme un langage au service d’une cause. Je suis fière d’avoir Dockerisé, d’avoir défendu l’accessibilité, et de voir notre idée exister réellement. 🎙️ ILÈS : Pour moi, ce projet c’est la preuve qu’on peut construire des choses qui ont du sens, du fond, et du style. J’ai adoré travailler sur le contenu, la cohérence du site, et contribuer à un média engagé. Je suis le plus fier de l’unité finale entre forme et message.', 'https://source.unsplash.com/600x300/?testimonial')">
+        <div class="decorative-element"></div>
+        <div class="post-header">👤 Regards croisés</div>
+        <div class="post-content">
+          <h2>Témoignages</h2>
+          <div class="post-description">🎙️ MARIA : Ce projet m’a permis de devenir développeuse... 🎙️ ILÈS : Pour moi, ce projet c’est la preuve qu’on peut construire des choses qui ont du sens...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?testimonial" alt="Témoignages" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('🛠️ Ce qu’on a appris', 'Apprentissages', 'Collaborer dans un cadre semi-professionnel, Travailler avec un CMS headless, Créer une architecture Next.js robuste, Dockeriser et déployer un projet complet, Mettre en œuvre l’accessibilité concrètement.', 'https://source.unsplash.com/600x300/?learning')">
+        <div class="decorative-element"></div>
+        <div class="post-header">🛠️ Ce qu’on a appris</div>
+        <div class="post-content">
+          <h2>Apprentissages</h2>
+          <div class="post-description">Collaborer dans un cadre semi-professionnel, Travailler avec un CMS headless...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?learning" alt="Apprentissages" />
+        </div>
+      </div>
+      <div class="post" onclick="openModal('🚀 Ce qu’on voudrait faire pour la suite', 'Projets futurs', 'Ajouter un lecteur audio interactif, Développer un espace collaboratif pour contributeurs, Traduire certains contenus en plusieurs langues, En faire une vraie revue, pourquoi pas imprimée !', 'https://source.unsplash.com/600x300/?future')">
+        <div class="decorative-element"></div>
+        <div class="post-header">🚀 Ce qu’on voudrait faire pour la suite</div>
+        <div class="post-content">
+          <h2>Projets futurs</h2>
+          <div class="post-description">Ajouter un lecteur audio interactif, Développer un espace collaboratif pour contributeurs...</div>
+          <img class="post-image" src="https://source.unsplash.com/600x300/?future" alt="Projets futurs" />
+        </div>
+      </div>
+    </main>
+
+    <aside class="rightbar">
+      <h3>En chiffres</h3>
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-number">9</span>
+          Étapes majeures
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">6</span>
+          Mois de travail
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          Outils utilisés
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="modal" id="postModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle"></div>
+        <button class="close-btn" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-meta" id="modalMeta"></div>
+        <p id="modalText"></p>
+        <img class="modal-image" id="modalImage" src="" alt="Image illustrative">
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-modal" id="profileModal">
+    <div class="profile-content">
+      <div class="profile-header">
+        <div class="modal-title">Profil Équipe</div>
+        <button class="close-btn" onclick="closeProfile()">✕</button>
+      </div>
+      <div class="profile-body">
+        <img id="profilePic" class="profile-pic" src="" alt="Profil">
+        <h2 class="profile-name" id="profileName"></h2>
+        <p class="profile-role" id="profileRole"></p>
+        <div class="profile-info">
+          <p><strong>📍 LOCALISATION :</strong> <span id="profileLocation"></span></p>
+          <p><strong>🏢 ENTREPRISE :</strong> <span id="profileCompany"></span></p>
+          <p><strong>🎓 ÉTABLISSEMENT :</strong> <span id="profileSchool"></span></p>
+        </div>
+        <div class="testimonial" id="profileTestimonial"></div>
+        <div class="experience" id="profileExperience"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(meta, title, text, imageUrl) {
+      document.getElementById('modalMeta').textContent = meta;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalText').textContent = text;
+      document.getElementById('modalImage').src = imageUrl;
+      document.getElementById('postModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('postModal').style.display = 'none';
+    }
+
+    function openProfile(name) {
+      const data = {
+        "Maria": {
+          img: "https://media.licdn.com/dms/image/v2/D4E35AQGioOatRj--ug/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1710236462031?e=1751637600&v=beta&t=sh4K1pg-rLRAKZO5Gm_wWDvx6fmGj1zl71hHLc9-eXA",
+          role: "Développeuse front-end et UX designer",
+          location: "Paris, Île-de-France",
+          company: "Assystem",
+          school: "Université Gustave Eiffel",
+          testimonial: "Ce projet m’a permis de devenir développeuse. Pas juste de coder, mais de penser le code comme un langage au service d’une cause. Je suis fière d’avoir Dockerisé, d’avoir défendu l’accessibilité, et de voir notre idée exister réellement.",
+          experience: [
+            "UX Designer & Intégratrice web – Assystem (2024-2025)",
+            "UX Designer – Stage (2024)",
+            "Ambassadrice – Becomtech (depuis 2020)",
+            "Stagiaire en communication – APF (2023)",
+            "Animatrice – Foyer de Grenelle (2023)"
+          ]
+        },
+        "Ilès": {
+          img: "https://media.licdn.com/dms/image/v2/D4E03AQF-cwd-uTogsQ/profile-displayphoto-shrink_400_400/B4EZcOPCDZHAAk-/0/1748290513584?e=1756339200&v=beta&t=D8B_SNcpNFKgBFzN_6Pz35Db2aynJ53Fj9LmuFGPpwI",
+          role: "Intégrateur & responsable contenu",
+          location: "Paris, Île-de-France",
+          company: "BUG Magazine",
+          school: "Université Gustave Eiffel",
+          testimonial: "Pour moi, ce projet c’est la preuve qu’on peut construire des choses qui ont du sens, du fond, et du style. J’ai adoré travailler sur le contenu, la cohérence du site, et contribuer à un média engagé. Je suis le plus fier de l’unité finale entre forme et message.",
+          experience: [
+            "Développeur Next.js – BUG (2024)",
+            "Gestion CMS & accessibilité – Projet BUG (2024)",
+            "Rédacteur tech – Freelance (2023-2024)"
+          ]
+        }
+      };
+
+      const user = data[name];
+      document.getElementById("profilePic").src = user.img;
+      document.getElementById("profileName").textContent = name.toUpperCase();
+      document.getElementById("profileRole").textContent = user.role;
+      document.getElementById("profileLocation").textContent = user.location;
+      document.getElementById("profileCompany").textContent = user.company;
+      document.getElementById("profileSchool").textContent = user.school;
+      document.getElementById("profileTestimonial").textContent = `"${user.testimonial}"`;
+
+      const expList = document.getElementById("profileExperience");
+      expList.innerHTML = "<h4>🧰 EXPÉRIENCE</h4>";
+      user.experience.forEach(exp => {
+        expList.innerHTML += "<p>• " + exp + "</p>";
+      });
+
+      document.getElementById("profileModal").style.display = "flex";
+    }
+
+    function closeProfile() {
+      document.getElementById("profileModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const postModal = document.getElementById('postModal');
+      const profileModal = document.getElementById('profileModal');
+
+      if (event.target == postModal) {
+        closeModal();
+      }
+      if (event.target == profileModal) {
+        closeProfile();
+      }
+    }
+  </script>
+</body>
+</html>
