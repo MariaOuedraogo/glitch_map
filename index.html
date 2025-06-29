@@ -23,6 +23,10 @@
       min-height: 100vh;
     }
 
+    img {
+      filter: grayscale(100%);
+    }
+
     .navbar {
       background: #000;
       color: #fff;
@@ -45,7 +49,7 @@
     .logo .star {
       width: 30px;
       height: 30px;
-      background: #fff;
+      background: #555;
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
 
@@ -79,13 +83,13 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 2rem 0;
       display: grid;
       grid-template-columns: 300px 1fr 300px;
       gap: 2rem;
     }
 
-       .sidebar, .rightbar {
+    .sidebar, .rightbar {
       background: #fff;
       border: 4px solid #000;
       padding: 1.5rem;
@@ -93,8 +97,6 @@
       top: 80px;
       align-self: start;
     }
-       
-  
 
     .sidebar h3, .rightbar h3 {
       font-size: 1.2rem;
@@ -128,12 +130,12 @@
       color: #fff;
       cursor: pointer;
       transition: all 0.2s;
+      border: 2px solid #000;
     }
 
     .team-member:hover {
       background: #fff;
       color: #000;
-      border: 2px solid #000;
     }
 
     .avatar {
@@ -193,24 +195,81 @@
     .post-description {
       margin-bottom: 1rem;
       line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .post-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1rem;
     }
 
     .post-image {
-      width: 100%;
-      height: 200px;
+      flex: 1 1 calc(33% - 10px);
+      height: 100px;
       object-fit: cover;
       border: 2px solid #000;
-      margin-top: 1rem;
     }
 
     .decorative-element {
       position: absolute;
-      top: -10px;
-      right: -10px;
-      width: 20px;
-      height: 20px;
-      background: #000;
-      clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+      width: 50px;
+      height: 50px;
+      background: #555;
+      clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+      );
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .star-top-left {
+      top: -20px;
+      left: -20px;
+    }
+
+    .star-top-right {
+      top: -20px;
+      right: -20px;
+    }
+
+    .star-bottom-center {
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .star-middle-left {
+      top: 50%;
+      left: -20px;
+      transform: translateY(-50%);
+    }
+
+    .star-middle-right {
+      top: 50%;
+      right: -20px;
+      transform: translateY(-50%);
     }
 
     .stats {
@@ -367,38 +426,30 @@
     }
 
     @media (min-width: 500px) {
-.nav-links a{
-      padding: 0.5rem 1rem;
-}
-      
+      .nav-links a {
+        padding: 0.5rem 1rem;
+      }
     }
+
     @media (max-width: 768px) {
-      
       .container {
         grid-template-columns: 1fr;
         padding: 1rem;
       }
-
       .navbar {
         flex-direction: column;
         gap: 1rem;
       }
-
       .nav-links {
         gap: 1rem;
       }
-
-      
     }
 
-     @media (min-width: 768px) {
-         .sidebar, .rightbar {
-      position: sticky;
+    @media (min-width: 768px) {
+      .sidebar, .rightbar {
+        position: sticky;
+      }
     }
-       
-    }
-
-     
   </style>
 </head>
 <body>
@@ -419,12 +470,12 @@
       <h3>Profil Projet</h3>
       <p><strong>NOM :</strong> BUG</p>
       <p><strong>RÔLE :</strong> Média critique du numérique</p>
-      <p><strong>TECHNOS :</strong> Next.js, Prismic, Docker</p>
+      <p><strong>TECHNOS :</strong> Next.js, Prismic, TypeScript, Figma, WEBGL</p>
 
       <h3 style="margin-top: 2rem;">Équipe Projet</h3>
       <ul class="team-list">
         <li class="team-member" onclick="openProfile('Maria')">
-          <img src="https://media.licdn.com/dms/image/v2/D4E35AQGioOatRj--ug/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1710236462031?e=1751637600&v=beta&t=sh4K1pg-rLRAKZO5Gm_wWDvx6fmGj1zl71hHLc9-eXA" alt="Maria" class="avatar">
+          <img src="https://media.licdn.com/dms/image/v2/D4E35AQGioOatRj--ug/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1710236462031?e=1751846400&v=beta&t=YPvPKAnrOoxc4HkdjO5cBWBseRTGxq0SQtZjVIw5dFE" alt="Maria" class="avatar">
           <span>MARIA</span>
         </li>
         <li class="team-member" onclick="openProfile('Ilès')">
@@ -434,133 +485,23 @@
       </ul>
     </aside>
 
-    <main class="feed">
-      <!-- Les posts restent inchangés -->
-      <div class="post" onclick="openModal('📌 Septembre – Le déclic', 'Naissance du projet', 'Une faille. Une IA piégée. 42 000 dollars évaporés dans les limbes du numérique. C’est à ce moment précis que l’idée a germé. Et si on reprenait le pouvoir sur nos identités numériques ? Et si on arrêtait de subir le web pour commencer à l’expliquer ? BUG n’est pas né d’un brief, mais d’un bug. Le vrai.', 'https://source.unsplash.com/600x300/?technology')">
-        <div class="decorative-element"></div>
-        <div class="post-header">📌 Septembre – Le déclic</div>
-        <div class="post-content">
-          <h2>Naissance du projet</h2>
-          <div class="post-description">Une faille. Une IA piégée. 42 000 dollars évaporés dans les limbes du numérique...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?technology" alt="Naissance du projet" />
-        </div>
-      </div>
-      <!-- Ajoutez les autres posts ici -->
-      <div class="post" onclick="openModal('🔍 Octobre – Les Fondations', 'Exploration & structure', 'Recherche intense. Analyse de The Verge, Wired, et autres OVNIs éditoriaux. Petit à petit, BUG se dessine : un média pédagogique, mais aussi critique. On crée les rubriques : Identité, Droit, Engagement, Culture. Un pont entre ceux qui savent et ceux qui veulent comprendre.', 'https://source.unsplash.com/600x300/?research')">
-        <div class="decorative-element"></div>
-        <div class="post-header">🔍 Octobre – Les Fondations</div>
-        <div class="post-content">
-          <h2>Exploration & structure</h2>
-          <div class="post-description">Recherche intense. Analyse de The Verge, Wired, et autres OVNIs éditoriaux...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?research" alt="Exploration & structure" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('📝 Novembre – Mettre en ordre le chaos', 'Organisation & Validation', 'Cahier des charges, calendrier, rôles. La rigueur s’invite dans le projet. On apprend à penser collectivement, à anticiper, à se structurer.', 'https://source.unsplash.com/600x300/?planning')">
-        <div class="decorative-element"></div>
-        <div class="post-header">📝 Novembre – Mettre en ordre le chaos</div>
-        <div class="post-content">
-          <h2>Organisation & Validation</h2>
-          <div class="post-description">Cahier des charges, calendrier, rôles. La rigueur s’invite dans le projet...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?planning" alt="Organisation & Validation" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('🎨 Décembre - Janvier – Le langage visuel', 'Design du site', 'Avec notre binôme graphiste, on imagine un univers brutaliste et contrasté, presque militant. Des maquettes Figma naissent. Le magazine prend une forme visuelle forte, presque vivante. On n’est plus spectateurs du numérique : on le construit.', 'https://source.unsplash.com/600x300/?figma')">
-        <div class="decorative-element"></div>
-        <div class="post-header">🎨 Décembre - Janvier – Le langage visuel</div>
-        <div class="post-content">
-          <h2>Design du site</h2>
-          <div class="post-description">Avec notre binôme graphiste, on imagine un univers brutaliste et contrasté...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?figma" alt="Design du site" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('🧠 Février – Prismic et l’architecture du contenu', 'Architecture du contenu', 'Découverte du headless CMS Prismic. On pense le contenu comme un flux : structuré, dynamique, éditable. On commence à construire un système, pas juste un site.', 'https://source.unsplash.com/600x300/?cms')">
-        <div class="decorative-element"></div>
-        <div class="post-header">🧠 Février – Prismic et l’architecture du contenu</div>
-        <div class="post-content">
-          <h2>Architecture du contenu</h2>
-          <div class="post-description">Découverte du headless CMS Prismic. On pense le contenu comme un flux...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?cms" alt="Architecture du contenu" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('💻 Mars – Next.js & Intégration', 'Développement du site', 'Le cœur du front. Routage dynamique, composants réactifs. Le site prend vie. Et il est beau. Fonctionnel. Dense.', 'https://source.unsplash.com/600x300/?development')">
-        <div class="decorative-element"></div>
-        <div class="post-header">💻 Mars – Next.js & Intégration</div>
-        <div class="post-content">
-          <h2>Développement du site</h2>
-          <div class="post-description">Le cœur du front. Routage dynamique, composants réactifs...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?development" alt="Développement du site" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('♿ Avril – Accessibilité & Exigences', 'Accessibilité', 'On s’impose Lighthouse, Opquast, navigation clavier, contraste, images alternatives. On apprend que coder, c’est inclure. Même si ça signifie sacrifier des animations. Pas grave. L’éthique avant l’esthétique.', 'https://source.unsplash.com/600x300/?accessibility')">
-        <div class="decorative-element"></div>
-        <div class="post-header">♿ Avril – Accessibilité & Exigences</div>
-        <div class="post-content">
-          <h2>Accessibilité</h2>
-          <div class="post-description">On s’impose Lighthouse, Opquast, navigation clavier, contraste...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?accessibility" alt="Accessibilité" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('🚢 Mai – Déploiement', 'Déploiement', 'Dockerisation, Vercel, DNS, SSL. BUG devient réel. Le web n’est plus un terrain d’étude. C’est notre terrain d’action.', 'https://source.unsplash.com/600x300/?deployment')">
-        <div class="decorative-element"></div>
-        <div class="post-header">🚢 Mai – Déploiement</div>
-        <div class="post-content">
-          <h2>Déploiement</h2>
-          <div class="post-description">Dockerisation, Vercel, DNS, SSL. BUG devient réel...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?deployment" alt="Déploiement" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('🎤 Juin – Livraison et fierté', 'Livraison', 'On présente. On documente. On publie le code. Notre travail est en ligne, lisible, utilisable. BUG est un outil. Un manifeste.', 'https://source.unsplash.com/600x300/?launch')">
-        <div class="decorative-element"></div>
-        <div class="post-header">🎤 Juin – Livraison et fierté</div>
-        <div class="post-content">
-          <h2>Livraison</h2>
-          <div class="post-description">On présente. On documente. On publie le code...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?launch" alt="Livraison" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('👤 Regards croisés', 'Témoignages', '🎙️ MARIA : Ce projet m’a permis de devenir développeuse. Pas juste de coder, mais de penser le code comme un langage au service d’une cause. Je suis fière d’avoir Dockerisé, d’avoir défendu l’accessibilité, et de voir notre idée exister réellement. 🎙️ ILÈS : Pour moi, ce projet c’est la preuve qu’on peut construire des choses qui ont du sens, du fond, et du style. J’ai adoré travailler sur le contenu, la cohérence du site, et contribuer à un média engagé. Je suis le plus fier de l’unité finale entre forme et message.', 'https://source.unsplash.com/600x300/?testimonial')">
-        <div class="decorative-element"></div>
-        <div class="post-header">👤 Regards croisés</div>
-        <div class="post-content">
-          <h2>Témoignages</h2>
-          <div class="post-description">🎙️ MARIA : Ce projet m’a permis de devenir développeuse... 🎙️ ILÈS : Pour moi, ce projet c’est la preuve qu’on peut construire des choses qui ont du sens...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?testimonial" alt="Témoignages" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('🛠️ Ce qu’on a appris', 'Apprentissages', 'Collaborer dans un cadre semi-professionnel, Travailler avec un CMS headless, Créer une architecture Next.js robuste, Dockeriser et déployer un projet complet, Mettre en œuvre l’accessibilité concrètement.', 'https://source.unsplash.com/600x300/?learning')">
-        <div class="decorative-element"></div>
-        <div class="post-header">🛠️ Ce qu’on a appris</div>
-        <div class="post-content">
-          <h2>Apprentissages</h2>
-          <div class="post-description">Collaborer dans un cadre semi-professionnel, Travailler avec un CMS headless...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?learning" alt="Apprentissages" />
-        </div>
-      </div>
-      <div class="post" onclick="openModal('🚀 Ce qu’on voudrait faire pour la suite', 'Projets futurs', 'Ajouter un lecteur audio interactif, Développer un espace collaboratif pour contributeurs, Traduire certains contenus en plusieurs langues, En faire une vraie revue, pourquoi pas imprimée !', 'https://source.unsplash.com/600x300/?future')">
-        <div class="decorative-element"></div>
-        <div class="post-header">🚀 Ce qu’on voudrait faire pour la suite</div>
-        <div class="post-content">
-          <h2>Projets futurs</h2>
-          <div class="post-description">Ajouter un lecteur audio interactif, Développer un espace collaboratif pour contributeurs...</div>
-          <img class="post-image" src="https://source.unsplash.com/600x300/?future" alt="Projets futurs" />
-        </div>
-      </div>
+    <main class="feed" id="feed">
+      <!-- Les posts seront générés dynamiquement ici -->
     </main>
 
     <aside class="rightbar">
       <h3>En chiffres</h3>
       <div class="stats">
         <div class="stat-item">
-          <span class="stat-number">9</span>
-          Étapes majeures
+          <span class="stat-number">478%</span> de stress
         </div>
         <div class="stat-item">
-          <span class="stat-number">6</span>
+          <span class="stat-number">8</span>
           Mois de travail
         </div>
         <div class="stat-item">
-          <span class="stat-number">10+</span>
-          Outils utilisés
+          <span class="stat-number">+5</span>
+          Nouvelles compétences
         </div>
       </div>
     </aside>
@@ -575,7 +516,7 @@
       <div class="modal-body">
         <div class="modal-meta" id="modalMeta"></div>
         <p id="modalText"></p>
-        <img class="modal-image" id="modalImage" src="" alt="Image illustrative">
+        <div id="modalImages"></div>
       </div>
     </div>
   </div>
@@ -602,11 +543,61 @@
   </div>
 
   <script>
-    function openModal(meta, title, text, imageUrl) {
+    // Charger les données JSON et générer dynamiquement les cartes
+    fetch('posts.json')
+      .then(response => response.json())
+      .then(posts => {
+        const feed = document.getElementById('feed');
+        const starPositions = ['star-top-left', 'star-top-right', 'star-bottom-center', 'star-middle-left', 'star-middle-right'];
+
+        posts.forEach((post, index) => {
+          const postElement = document.createElement('div');
+          postElement.className = 'post';
+
+          // Utilisez une position d'étoile cyclique
+          const starPosition = starPositions[index % starPositions.length];
+
+          postElement.innerHTML = `
+            <div class="decorative-element ${starPosition}"></div>
+            <div class="post-header">${post.meta}</div>
+            <div class="post-content">
+              <h2>${post.title}</h2>
+              <div class="post-description">${post.text}</div>
+              <div class="post-images">
+                ${Array.isArray(post.imageUrl) ? post.imageUrl.map(url => `<img class="post-image" src="${url}" alt="${post.title}" />`).join('') : `<img class="post-image" src="${post.imageUrl}" alt="${post.title}" />`}
+              </div>
+            </div>
+          `;
+
+          postElement.onclick = () => openModal(post.meta, post.title, post.text, post.imageUrl);
+          feed.appendChild(postElement);
+        });
+      });
+
+    function openModal(meta, title, text, imageUrls) {
       document.getElementById('modalMeta').textContent = meta;
       document.getElementById('modalTitle').textContent = title;
       document.getElementById('modalText').textContent = text;
-      document.getElementById('modalImage').src = imageUrl;
+
+      const modalImages = document.getElementById('modalImages');
+      modalImages.innerHTML = '';
+
+      if (Array.isArray(imageUrls)) {
+        imageUrls.forEach(url => {
+          const imgElement = document.createElement('img');
+          imgElement.className = 'modal-image';
+          imgElement.src = url;
+          imgElement.alt = title;
+          modalImages.appendChild(imgElement);
+        });
+      } else {
+        const imgElement = document.createElement('img');
+        imgElement.className = 'modal-image';
+        imgElement.src = imageUrls;
+        imgElement.alt = title;
+        modalImages.appendChild(imgElement);
+      }
+
       document.getElementById('postModal').style.display = 'flex';
     }
 
@@ -617,30 +608,30 @@
     function openProfile(name) {
       const data = {
         "Maria": {
-          img: "https://media.licdn.com/dms/image/v2/D4E35AQGioOatRj--ug/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1710236462031?e=1751637600&v=beta&t=sh4K1pg-rLRAKZO5Gm_wWDvx6fmGj1zl71hHLc9-eXA",
+          img: "https://media.licdn.com/dms/image/v2/D4E35AQGioOatRj--ug/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1710236462031?e=1751846400&v=beta&t=YPvPKAnrOoxc4HkdjO5cBWBseRTGxq0SQtZjVIw5dFE",
           role: "Développeuse front-end et UX designer",
           location: "Paris, Île-de-France",
-          company: "Assystem",
+          company: "BUG",
           school: "Université Gustave Eiffel",
-          testimonial: "Ce projet m’a permis de devenir développeuse. Pas juste de coder, mais de penser le code comme un langage au service d’une cause. Je suis fière d’avoir Dockerisé, d’avoir défendu l’accessibilité, et de voir notre idée exister réellement.",
+          testimonial: "Ce projet n’a pas toujours été simple. Il y a eu des hauts, des bas, et des moments de vrai découragement. Mais aujourd’hui, je suis fière de ce que nous avons réussi à construire. BUG, c’est la preuve concrète de notre progression. J’ai vraiment senti une montée en compétences, technique comme humaine. J’ai particulièrement aimé explorer le WebGL, qui m’a permis d’ajouter une dimension visuelle forte au projet, ainsi que travailler sur l’accessibilité, un enjeu trop souvent négligé mais essentiel. C’est un projet exigeant, ambitieux, mais surtout profondément formateur. Une belle façon de clore le chapitre MMI.",
           experience: [
-            "UX Designer & Intégratrice web – Assystem (2024-2025)",
-            "UX Designer – Stage (2024)",
-            "Ambassadrice – Becomtech (depuis 2020)",
-            "Stagiaire en communication – APF (2023)",
-            "Animatrice – Foyer de Grenelle (2023)"
+            "Développeuse Next.js (2025)",
+            "Gestion CMS et accéssibilité – (2025)",
+            "Cheffe de projet – (2024-2025)",
+            "UX Designer – (2024)"
           ]
         },
         "Ilès": {
           img: "https://media.licdn.com/dms/image/v2/D4E03AQF-cwd-uTogsQ/profile-displayphoto-shrink_400_400/B4EZcOPCDZHAAk-/0/1748290513584?e=1756339200&v=beta&t=D8B_SNcpNFKgBFzN_6Pz35Db2aynJ53Fj9LmuFGPpwI",
           role: "Intégrateur & responsable contenu",
           location: "Paris, Île-de-France",
-          company: "BUG Magazine",
+          company: "BUG",
           school: "Université Gustave Eiffel",
-          testimonial: "Pour moi, ce projet c’est la preuve qu’on peut construire des choses qui ont du sens, du fond, et du style. J’ai adoré travailler sur le contenu, la cohérence du site, et contribuer à un média engagé. Je suis le plus fier de l’unité finale entre forme et message.",
+          testimonial: "Travailler sur BUG a été une expérience très enrichissante. J’ai apprécié pouvoir sortir du cadre institutionnel des projets proposés par l’APF France handicap, pour m’impliquer dans un projet plus libre, ancré dans des problématiques actuelles qui me parlent. Ce stage m’a permis de consolider mes compétences en développement avec des outils concrets comme Next.js et TypeScript, deux technologies très recherchées aujourd’hui dans le milieu professionnel. J’ai particulièrement aimé travailler sur la structure du site et la logique de routage dynamique, qui m’a permis de mieux comprendre l’architecture d’une application web moderne. Ce projet m’a offert un vrai terrain d’apprentissage, tout en me donnant la satisfaction de contribuer à quelque chose de vivant et utile.",
           experience: [
-            "Développeur Next.js – BUG (2024)",
-            "Gestion CMS & accessibilité – Projet BUG (2024)",
+            "Développeur Next.js – BUG (2025)",
+            "Gestion CMS – (2025)",
+            "Expert en hébergement – (2025)",
             "Rédacteur tech – Freelance (2023-2024)"
           ]
         }

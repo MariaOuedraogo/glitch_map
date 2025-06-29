@@ -1,0 +1,86 @@
+[
+  {
+    "meta": "📌 Septembre – Le déclic",
+    "title": "Naissance du projet",
+    "text": "Fin septembre, Mme Caclard nous expose les projets de l’année. Trois d’entre nous restent hermétiques aux propositions de l’APF France handicap. Début octobre, elle nous oriente vers son projet personnel : le journal BUG. L’idée émerge : reprendre la main sur nos identités numériques. Ne plus subir le web, mais l’interpréter.Et là, l’excitation monte. L’idée de travailler pour un journal, avec une vraie identité, un ton, un univers graphique : ça nous parle tout de suite. Trois développeurs, trois créatifs : Nous sommes devenu l’équipe GLITCH!",
+    "imageUrl": ["https://i.pinimg.com/originals/69/d2/8c/69d28cb69a870c8ebee0149f7d9fd7a5.gif"]
+  },
+  {
+    "meta": "🔍 Octobre – Les Fondations",
+    "title": "Exploration & structure",
+    "text": "Recherche intense. Analyse de The Verge, Wired, Dazed et la Gaîté Lyrique. Peu à peu, BUG prend forme : une page d’accueil immersive plante le décor et donne accès aux numéros du magazine, anciens comme récents, tout en mettant en avant les actualités du numérique. Une section permet de participer à l’expérience BUG : acheter les éditions, proposer des idées, ou s’impliquer dans des projets collaboratifs. Enfin, un espace dédié aux ressources et un glossaire viennent éclairer les notions abordées, pour apprendre sans jamais décrocher. Rétrospectivement, cette phase de conception éditoriale et structurelle a été la plus fluide. On avait déjà l’habitude d’analyser des médias, de réfléchir à l’expérience utilisateur, à l’organisation de contenus. Depuis la première année de BUT, c’est un terrain familier. Sans prétention, on peut dire qu’à ce stade, nous étions déjà bien à l’aise avec ces logiques.",
+    "imageUrl": ["two.jpg"]
+  },
+  {
+    "meta": "📝 Novembre – Mettre en ordre le chaos",
+    "title": "Organisation & Validation",
+    "text": "Cahier des charges, calendrier, rôles. La rigueur s’invite dans le projet. On apprend à penser collectivement, à anticiper, à se structurer. C’était aussi une phase stressante : personne ne voulait vraiment prendre le lead, et nos personnalités très différentes rendaient parfois la dynamique incertaine. Mais justement, c’est ce contraste qui a fini par créer un équilibre. Les choses se sont organisées naturellement. Maria, plus à l’aise à l’oral et dans la communication, a pris en main l’accessibilité et les échanges. Ilès, avec des bases techniques plus solides, s’est concentré sur les langages, l’architecture, et les choix de développement. Les décisions se sont réparties en fonction de nos forces, presque sans qu’on ait besoin de les formaliser.",
+    "imageUrl": [
+      "three.jpg",
+      "three.bis.jpg"
+    ]
+  },
+  {
+    "meta": "🎨 Décembre - Janvier – Le langage visuel",
+    "title": "Design du site",
+    "text": "On imagine un univers brutaliste et contrasté. Des maquettes Figma naissent. Le magazine prend une forme visuelle forte. Pourtant, cette étape n’a pas été simple. Sans accès direct aux typographies du graphiste et avec une communication parfois compliquée, traduire l’identité visuelle du projet a été un vrai défi. D’autant plus que notre groupe ne comptait aucun profil “créa” à proprement parler que des développeurs. Mais c’est justement là que la force collective a joué. On a compensé avec débrouille, imagination et surtout beaucoup de créativité. À défaut de formation graphique, on a su faire preuve d’intuition et d’inventivité.",
+    "imageUrl": [
+        "hero.jpg"]
+  },
+  {
+    "meta": "🧠 Février – Prismic et l’architecture du contenu",
+    "title": "Architecture du contenu",
+    "text": "Découverte du headless CMS Prismic, qui nous permet de structurer notre contenu avec souplesse tout en gardant la main sur le design. Une vraie révélation : l’interface est intuitive, la gestion des contenus devient fluide, et cela ouvre de nouvelles perspectives pour faire évoluer BUG comme un média vivant, modulable, en perpétuelle construction. C’était aussi un outil très agréable à apprendre, mais pas sans contraintes : faute de budget, nous n’avions accès qu’à un seul compte, ce qui a rapidement compliqué les tests simultanés. On a donc dû établir un petit calendrier de gestion des accès pour ne pas se marcher dessus. Malgré ça, Prismic reste un vrai coup de cœur, et Ilès envisage même de l’utiliser pour construire son portfolio.",
+    "imageUrl": ["https://source.unsplash.com/600x300/?cms"]
+  },
+  {
+    "meta": "💻 Mars – Next.js & Intégration",
+    "title": "Développement du site",
+    "text": "Le cœur du front. Routage dynamique, composants réactifs. Le site prend vie. Et il est beau. Accessible. On a fait le choix de technologies ambitieuses : Next js, TypeScript, WebGL, Prismic. L’objectif était clair : un vrai projet pour réellement monter en compétences. Mais tout n’a pas été simple. On ne maîtrisait ni Next.js ni TypeScript au départ. Heureusement, nos bases en React ont servi de socle. Le développement a été intense, parfois chaotique. C’est d’ailleurs à ce moment-là que le troisième soldat de l’équipe a disparu. Perte sèche. Il a fallu continuer à deux, apprendre vite, corriger encore plus vite, et avancer malgré tout. Notre plus grande fierté ? Ne pas avoir fait une seule nuit blanche. Ça, c’est de l’organisation.",
+    "imageUrl": ["sitecode.png", "articles.png", "detail.png", "error.webp"]
+  },
+  {
+    "meta": "♿ Avril – Accessibilité & Exigences",
+    "title": "Accessibilité",
+    "text": "On s’impose Lighthouse, Opquast, contraste, images alternatives tant d'outil d'accessibilité qui nous pousse à sacrifier des animations. \n #L’éthique avant l’esthétique.",
+    "imageUrl": ["access.png", "anim.gif", "terminal.gif"]
+  },
+  {
+    "meta": "🚢 Mai – Déploiement",
+    "title": "Déploiement",
+    "text": "Pour le déploiement,nous avons choisis Vercel. Nous voulions une solution simple, efficace, et surtout gratuite. BUG est un projet sans budget, mais pas sans ambitions. Vercel s’est imposé naturellement : intégration fluide avec Next.js, déploiement quasi instantané, et des outils intégrés pour gérer le DNS (qui permet d’associer notre nom de domaine au site) et le SSL (qui sécurise la connexion avec le petit cadenas dans la barre d’adresse). Tout est là, sans friction. Et ça fonctionne. BUG est disponible sur : buglejournal.fr",
+    "imageUrl": ["https://source.unsplash.com/600x300/?deployment"]
+  },
+  {
+    "meta": "🎤 Juin – Livraison et fierté",
+    "title": "Livraison",
+    "text": "Nous avons mis au point une documentation claire pour permettre à n’importe qui de réinstaller le projet à partir d’une  archive. Elle explique comment connecter le site à Prismic pour gérer les contenus. Il éxiste aussi une documentation pour apprendre à utiliser prismic : comment mettre à jour les pages, puis redéployer le tout facilement via Vercel. Nous y détaillons aussi l’intégration de Google Analytics, afin de suivre les statistiques du journal en ligne : comprendre qui nous lit, d’où, et comment. Rien n’est laissé au hasard : BUG est pensé pour durer, et pour être transmis.",
+    "imageUrl": ["mode.png"]
+  },
+  {
+    "meta": "👤 Regards croisés ",
+    "title": "Témoignages : MARIA",
+    "text": "🎙️: Ce projet m’a permis de devenir développeuse. Pas juste de coder, mais de penser le code comme un langage au service d’une cause.",
+    "imageUrl": ["https://i.pinimg.com/originals/0d/44/42/0d444222b5b1e6630369498d145da57a.gif"]
+  },
+
+   {
+    "meta": "👤 Regards croisés ",
+    "title": "Témoignages : ILÈS",
+    "text": "🎙️ : Pour moi, ce projet c’est la preuve qu’on peut construire des choses qui ont du sens, du fond, et du style. J’ai adoré travailler sur le contenu, la cohérence du site, et contribuer à un média engagé. Je suis le plus fier de l’unité finale entre forme et message.",
+    "imageUrl": ["https://i.pinimg.com/originals/1e/54/0b/1e540b32c62b9b82170b4f26d7d91b32.gif"]
+  },
+  {
+    "meta": "🛠️ Ce qu’on a appris",
+    "title": "Apprentissages",
+    "text": "Ce projet, c’était bien plus qu’un simple exercice technique. Nous avons appris à collaborer dans un cadre semi-professionnel, avec ses exigences, ses imprévus, ses responsabilités. Travailler avec un CMS headless comme Prismic nous a confrontés à une logique de gestion de contenu moderne. Concevoir une architecture solide avec Next.js a exigé de la méthode, de la rigueur. Et même si nous avons renoncé à la dockerisation, ce fut un choix réfléchi, en cohérence avec nos moyens et nos objectifs. L’accessibilité, elle, a cessé d’être un mot-clé pour devenir une pratique concrète, intégrée à nos choix de design et de code. Mais surtout, BUG marque un tournant : c’est le projet qui nous a permis, pour la première fois, de nous sentir réellement développeurs. Maîtres d’un projet personnel. Responsables de bout en bout. Et fiers de créer quelque chose qui va vivre, servir, et, on l’espère, inspirer. Un vrai jalon.",
+    "imageUrl": ["https://i.pinimg.com/736x/fe/f0/28/fef028f9a22ac567de2fd8b8e92aec7c.jpg"]
+  },
+  {
+    "meta": "🚀 Ce qu’on voudrait faire pour la suite",
+    "title": "Projets futurs",
+    "text": "Et ce n’est qu’un début. Nous avons déjà une foule d’idées pour faire évoluer BUG. Ajouter un lecteur audio interactif, pour rendre certains contenus accessibles à l’oral, ou simplement proposer une autre manière de lire. Développer un espace collaboratif pensé pour les contributeurs, faciliter les échanges, les soumissions, nourrir une vraie dynamique collective, créer une newsletter. Traduire certains contenus en plusieurs langues, pour élargir notre portée et ouvrir BUG à d’autres cultures. C’est aussi pour ça qu’on garde un léger goût d’inachevé. On aurait aimé faire plus. Pousser plus loin certaines idées. Avoir le temps, les moyens, l’énergie de tout concrétiser. Mais BUG n’est pas figé. Il vit, et surtout, il a encore de quoi grandir!!!",
+    "imageUrl": [
+      "https://i.pinimg.com/originals/09/39/12/093912a1ba50761e38bbbaa4193cd647.gif"]
+  }
+]
