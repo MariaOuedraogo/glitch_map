@@ -31,7 +31,7 @@
     "meta": "🧠 Février – Prismic et l’architecture du contenu",
     "title": "Architecture du contenu",
     "text": "Découverte du headless CMS Prismic, qui nous permet de structurer notre contenu avec souplesse tout en gardant la main sur le design. Une vraie révélation : l’interface est intuitive, la gestion des contenus devient fluide, et cela ouvre de nouvelles perspectives pour faire évoluer BUG comme un média vivant, modulable, en perpétuelle construction. C’était aussi un outil très agréable à apprendre, mais pas sans contraintes : faute de budget, nous n’avions accès qu’à un seul compte, ce qui a rapidement compliqué les tests simultanés. On a donc dû établir un petit calendrier de gestion des accès pour ne pas se marcher dessus. Malgré ça, Prismic reste un vrai coup de cœur, et Ilès envisage même de l’utiliser pour construire son portfolio.",
-    "imageUrl": ["https://source.unsplash.com/600x300/?cms"]
+    "imageUrl": ["prismic.webp","prismicc.webp", "prismiccc.webp"]
   },
   {
     "meta": "💻 Mars – Next.js & Intégration",
