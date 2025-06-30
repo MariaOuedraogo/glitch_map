@@ -31,7 +31,7 @@
     "meta": "🧠 Février – Prismic et l’architecture du contenu",
     "title": "Architecture du contenu",
     "text": "Découverte du headless CMS Prismic, qui nous permet de structurer notre contenu avec souplesse tout en gardant la main sur le design. Une vraie révélation : l’interface est intuitive, la gestion des contenus devient fluide, et cela ouvre de nouvelles perspectives pour faire évoluer BUG comme un média vivant, modulable, en perpétuelle construction. C’était aussi un outil très agréable à apprendre, mais pas sans contraintes : faute de budget, nous n’avions accès qu’à un seul compte, ce qui a rapidement compliqué les tests simultanés. On a donc dû établir un petit calendrier de gestion des accès pour ne pas se marcher dessus. Malgré ça, Prismic reste un vrai coup de cœur, et Ilès envisage même de l’utiliser pour construire son portfolio.",
-    "imageUrl": ["prismic.webp","prismicc.webp", "prismiccc.webp"]
+    "imageUrl": ["prismicc.webp", "prismiccc.webp"]
   },
   {
     "meta": "💻 Mars – Next.js & Intégration",
@@ -49,7 +49,7 @@
     "meta": "🚢 Mai – Déploiement",
     "title": "Déploiement",
     "text": "Pour le déploiement,nous avons choisis Vercel. Nous voulions une solution simple, efficace, et surtout gratuite. BUG est un projet sans budget, mais pas sans ambitions. Vercel s’est imposé naturellement : intégration fluide avec Next.js, déploiement quasi instantané, et des outils intégrés pour gérer le DNS (qui permet d’associer notre nom de domaine au site) et le SSL (qui sécurise la connexion avec le petit cadenas dans la barre d’adresse). Tout est là, sans friction. Et ça fonctionne. BUG est disponible sur : buglejournal.fr",
-    "imageUrl": ["https://source.unsplash.com/600x300/?deployment"]
+    "imageUrl": ["prismic.webp"]
   },
   {
     "meta": "🎤 Juin – Livraison et fierté",
